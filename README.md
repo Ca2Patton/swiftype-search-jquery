@@ -103,11 +103,13 @@ Any fields that are queried during a search will return the top match (if any) i
 You can customize which fields are returned in the highlight property by using the `highlightFields` option.
 
 $('#st-search-input').swiftypeSearch({ 
-		renderFunction: customRenderFunction,
-		fetchFields: {'books': ['title','genre','published_on']},
-		engineKey: 'jaDGyzkR6iYHkfNsPpNK'
-		highlightFields: { 'books': {'body': {'size': 300, 'fallback': true }}}
-	});
+    renderFunction: customRenderFunction,
+    fetchFields: {'books': ['title','genre','published_on']},
+    engineKey: 'jaDGyzkR6iYHkfNsPpNK'
+    highlightFields: {
+      'books': {'body': {'size': 300, 'fallback': true }}
+    }
+  });
 
 The `highlightFields` option accepts a hash containing the fields you want to have highlighted for each object of each DocumentType. For each field, specify `size` as the maximum number of characters to include in the snippet. Set `fallback` to true to force inclusion of a non-highlighted snippet if a highlight is not available for that field.
 
