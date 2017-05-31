@@ -98,7 +98,7 @@ Now simply set the `renderFunction` attribute in the options dictionary to your 
 
 #### Returning a matching highlight snippet
 
-Any fields that are queried during a search will return the top match (if any) in the highlight property of the results. All snippets in this form have HTML entities from the original text encoded. Actual highlighting is specified using (unencoded) <em> tags.
+Any fields that are queried during a search will return the top match (if any) in the highlight property of the results. All snippets in this form have HTML entities from the original text encoded. Actual highlighting is specified using (unencoded) `<em>` tags.
 
 You can customize which fields are returned in the highlight property by using the `highlightFields` option.
 
