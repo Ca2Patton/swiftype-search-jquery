@@ -21,7 +21,7 @@ Include the following in the header of your webpage:
 
 All together it should look like this:
 
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type='text/javascript' src='jquery.ba-hashchange.min.js'></script>
 	<script type="text/javascript" src="jquery.swiftype.search.js"></script>
 	<link type="text/css" rel="stylesheet" href="search.css" media="all" />
@@ -96,6 +96,22 @@ Now simply set the `renderFunction` attribute in the options dictionary to your 
 		engineKey: 'jaDGyzkR6iYHkfNsPpNK'
 	});
 
+#### Returning a matching highlight snippet
+
+Any fields that are queried during a search will return the top match (if any) in the highlight property of the results. All snippets in this form have HTML entities from the original text encoded. Actual highlighting is specified using (unencoded) <em> tags.
+
+You can customize which fields are returned in the highlight property by using the `highlightFields` option.
+
+$('#st-search-input').swiftypeSearch({ 
+		renderFunction: customRenderFunction,
+		fetchFields: {'books': ['title','genre','published_on']},
+		engineKey: 'jaDGyzkR6iYHkfNsPpNK'
+		highlightFields: { 'books': {'body': {'size': 300, 'fallback': true }}}
+	});
+
+The `highlightFields` option accepts a hash containing the fields you want to have highlighted for each object of each DocumentType. For each field, specify `size` as the maximum number of characters to include in the snippet. Set `fallback` to true to force inclusion of a non-highlighted snippet if a highlight is not available for that field.
+
+See the custom.html file for an additional example of `highlightFields`.
 
 #### Restricting matching to particular fields
 
