@@ -22,9 +22,6 @@ All together it should look like this:
 
 ```html
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type='text/javascript' src='jquery.ba-hashchange.min.js'></script>
-=======
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="jquery.ba-hashchange.min.js"></script>
 <script type="text/javascript" src="jquery.swiftype.search.js"></script>
 <link type="text/css" rel="stylesheet" href="search.css" media="all" />
