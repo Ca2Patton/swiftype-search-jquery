@@ -21,13 +21,11 @@ Include the following in the header of your webpage:
 All together it should look like this:
 
 ```html
-<<<<<<< HEAD
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type='text/javascript' src='jquery.ba-hashchange.min.js'></script>
 =======
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="jquery.ba-hashchange.min.js"></script>
->>>>>>> swiftype/davishmcclurg/readme
 <script type="text/javascript" src="jquery.swiftype.search.js"></script>
 <link type="text/css" rel="stylesheet" href="search.css" media="all" />
 ```
@@ -37,7 +35,6 @@ Basic Usage
 
 Start by having at least these three elements on the page: a form, an input field within the form, and a container for results.
 
-<<<<<<< HEAD
 =======
 ```html
 <form>
@@ -48,7 +45,6 @@ Start by having at least these three elements on the page: a form, an input fiel
 
 Simply apply the swiftype method to an existing search input field within a form on your webpage and provide a container for results. For example, add it to a search input field with id `st-search-input` as follows:
 
->>>>>>> swiftype/davishmcclurg/readme
 ```js
 $('#st-search-input').swiftypeSearch({
   resultContainingElement: '#st-results-container',
@@ -86,7 +82,7 @@ Any fields that are queried during a search will return the top match (if any) i
 
 You can customize which fields are returned in the highlight property by using the `highlightFields` option:
 
-```JavaScript
+```js
 $('#st-search-input').swiftypeSearch({
   renderFunction: customRenderFunction,
   fetchFields: {'books': ['title','genre','published_on']},
@@ -167,11 +163,7 @@ See the custom.html file for an additional example of `highlightFields`.
 
 By default, the Swiftype search library will match the submitted query to any `string` or `text` field indexed for your documents. So if you would like to ensure that it only matches entries in the `title` field, for example, you can specify the `searchFields` option:
 
-<<<<<<< HEAD
 ```js
-=======
-```
->>>>>>> swiftype/davishmcclurg/readme
 $('#st-search-input').swiftypeSearch({
   renderFunction: customRenderFunction,
   fetchFields: {'books': ['title','genre','published_on']},
