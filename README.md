@@ -20,7 +20,7 @@ Include the following in the header of your webpage:
 
 All together it should look like this:
 
-```
+```html
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type='text/javascript' src='jquery.ba-hashchange.min.js'></script>
 <script type="text/javascript" src="jquery.swiftype.search.js"></script>
@@ -30,9 +30,9 @@ All together it should look like this:
 Basic Usage
 -----
 
-Simply apply the swiftype method to an existing search input field on your webpage and provide a container for results. For example, add it to a search input field with id `st-search-input` as follows:
+Start by having at least these three elements on the page: a form, an input field within the form, and a container for results.
 
-```JavaScript
+```js
 $('#st-search-input').swiftypeSearch({
   resultContainingElement: '#st-results-container',
   engineKey: 'jaDGyzkR6iYHkfNsPpNK'
@@ -54,8 +54,8 @@ Let's go through an example that does all of this. For this example, let's assum
 
 To specify the number of results per page, use the `perPage` attribute.
 
-```JavaScript
-$('#st-search-input').swiftypeSearch({
+```js
+$('#st-search-input').swiftypeSearch({ 
   engineKey: 'jaDGyzkR6iYHkfNsPpNK',
   perPage: 20
 });
@@ -63,12 +63,31 @@ $('#st-search-input').swiftypeSearch({
 
 The maximium value that will be honored by the API is 100.
 
+#### Returning a matching highlight snippet
+
+Any fields that are queried during a search will return the top match (if any) in the highlight property of the results. All snippets in this form have HTML entities from the original text encoded. Actual highlighting is specified using (unencoded) `<em>` tags.
+
+You can customize which fields are returned in the highlight property by using the `highlightFields` option:
+
+```JavaScript
+$('#st-search-input').swiftypeSearch({
+  renderFunction: customRenderFunction,
+  fetchFields: {'books': ['title','genre','published_on']},
+  engineKey: 'jaDGyzkR6iYHkfNsPpNK'
+  highlightFields: {'books': {'body': {'size': 300, 'fallback': true }}}
+});
+```
+
+The `highlightFields` option accepts a hash containing the fields you want to have highlighted for each object of each document type. For each field, specify `size` as the maximum number of characters to include in the snippet. Set `fallback` to true to force inclusion of a non-highlighted snippet if a highlight is not available for that field.
+
+See the [custom.html](https://github.com/swiftype/swiftype-search-jquery/blob/master/custom.html) file for an additional example of `highlightFields`.
+
 #### Fetching only the fields you specify
 
 To specify the fields you would like returned from the API, set the `fetchFields` attribute to a hash containing an array listing the fields you want returned for each document type. For example, if you have indexed `title`, `genre`, and `published_on` fields for each document, you can have them returned as follows:
 
-```JavaScript
-$('#st-search-input').swiftypeSearch({
+```js
+$('#st-search-input').swiftypeSearch({ 
   fetchFields: {'books': ['title','genre','published_on']},
   engineKey: 'jaDGyzkR6iYHkfNsPpNK'
 });
@@ -82,7 +101,7 @@ Now that you have more data for each result item, you'll want to customize the i
 
 The default rendering function is shown below:
 
-```JavaScript
+```js
 var defaultRenderFunction = function(document_type, item) {
   return '<div class="st-result"><h3 class="title"><a href="' + item['url'] + '" class="st-search-result-link">' + item['title'] + '</a></h3></div>';
 };
@@ -90,7 +109,7 @@ var defaultRenderFunction = function(document_type, item) {
 
 The additional fields are available as keys in the item dictionary, so you could customize this to make use of the `genre` field as follows:
 
-```JavaScript
+```js
 var customRenderFunction = function(document_type, item) {
   var out = '<a href="' + item['url'] + '" class="st-search-result-link">' + item['title'] + '</a>';
   return out.concat('<p class="genre">' + item['genre'] + '</p>');
@@ -99,8 +118,8 @@ var customRenderFunction = function(document_type, item) {
 
 Now simply set the `renderFunction` attribute in the options dictionary to your `customRenderFunction` to tell our plugin to use your function to render results:
 
-```JavaScript
-$('#st-search-input').swiftypeSearch({
+```js
+$('#st-search-input').swiftypeSearch({ 
   renderFunction: customRenderFunction,
   fetchFields: {'books': ['title','genre','published_on']},
   engineKey: 'jaDGyzkR6iYHkfNsPpNK'
@@ -113,7 +132,7 @@ Any fields that are queried during a search will return the top match (if any) i
 
 You can customize which fields are returned in the highlight property by using the `highlightFields` option:
 
-```JavaScript
+```js
 $('#st-search-input').swiftypeSearch({
   renderFunction: customRenderFunction,
   fetchFields: {'books': ['title','genre','published_on']},
@@ -131,7 +150,7 @@ See the custom.html file for an additional example of `highlightFields`.
 
 By default, the Swiftype search library will match the submitted query to any `string` or `text` field indexed for your documents. So if you would like to ensure that it only matches entries in the `title` field, for example, you can specify the `searchFields` option:
 
-```JavaScript
+```js
 $('#st-search-input').swiftypeSearch({
   renderFunction: customRenderFunction,
   fetchFields: {'books': ['title','genre','published_on']},
@@ -146,8 +165,8 @@ Similarly to the `fetchFields` option, `searchFields` accepts a hash containing 
 
 Now let's say you only want your results to display books that are of the **fiction** `genre` and are **in_stock**. In order to restrict search results, you can pass additional query conditions to the search API by specifying them as a dictionary in the `filters` field. Multiple clauses in the filters field are combined with AND logic:
 
-```JavaScript
-$('#st-search-input').swiftypeSearch({
+```js
+$('#st-search-input').swiftypeSearch({ 
   renderFunction: customRenderFunction,
   fetchFields: {'books': ['title','genre','published_on']},
   filters: {'books': {'genre': 'fiction', 'in_stock': true}},
