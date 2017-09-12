@@ -259,7 +259,7 @@
     }
 
     if (spellingSuggestion !== null) {
-      $resultContainer.append('<div class="st-spelling-suggestion">Did you mean <a href="#" data-hash="true" data-spelling-suggestion="' + spellingSuggestion + '">' + spellingSuggestion + '</a>?</div>');
+      $resultContainer.append('<div class="st-spelling-suggestion">Did you mean <a href="#" data-hash="true" data-spelling-suggestion="' + htmlEscape(spellingSuggestion) + '">' + htmlEscape(spellingSuggestion) + '</a>?</div>');
     }
   };
 
