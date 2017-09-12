@@ -32,7 +32,6 @@ Basic Usage
 
 Start by having at least these three elements on the page: a form, an input field within the form, and a container for results.
 
-=======
 ```html
 <form>
   <input type="text" placeholder="Search" id="st-search-input" />
