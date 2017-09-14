@@ -21,6 +21,7 @@ Include the following in the header of your webpage:
 All together it should look like this:
 
 ```html
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="jquery.ba-hashchange.min.js"></script>
 <script type="text/javascript" src="jquery.swiftype.search.js"></script>
@@ -78,7 +79,7 @@ Any fields that are queried during a search will return the top match (if any) i
 
 You can customize which fields are returned in the highlight property by using the `highlightFields` option:
 
-```JavaScript
+```js
 $('#st-search-input').swiftypeSearch({
   renderFunction: customRenderFunction,
   fetchFields: {'books': ['title','genre','published_on']},
@@ -159,7 +160,7 @@ See the custom.html file for an additional example of `highlightFields`.
 
 By default, the Swiftype search library will match the submitted query to any `string` or `text` field indexed for your documents. So if you would like to ensure that it only matches entries in the `title` field, for example, you can specify the `searchFields` option:
 
-```
+```js
 $('#st-search-input').swiftypeSearch({
   renderFunction: customRenderFunction,
   fetchFields: {'books': ['title','genre','published_on']},
